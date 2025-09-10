@@ -15,6 +15,10 @@
   // Get param "ort" from URL
   const urlParams = new URLSearchParams(window.location.search);
   const ort = urlParams.get("ort");
+  let max_new_tokens = Number.parseInt(urlParams.get("max_new_tokens"));
+  if (Number.isNaN(max_new_tokens)) {
+    max_new_tokens = 100;
+  }
 
   // param "ort" can be:
   // 0: use ORT from CDN
@@ -60,7 +64,7 @@
   let tokenCount = 0;
   const start = performance.now();
   const output = await generator(messages, {
-    max_new_tokens: 512,
+    max_new_tokens,
     do_sample: false,
     streamer: new TextStreamer(generator.tokenizer, {
       skip_prompt: true,
