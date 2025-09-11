@@ -1,0 +1,25 @@
+{
+  "name": "ort-web-integration-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fs-eire/ort-web-integration-test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/fs-eire/ort-web-integration-test/issues"
+  },
+  "homepage": "https://github.com/fs-eire/ort-web-integration-test#readme",
+  "dependencies": {
+    "onnxruntime-node": "^1.23.0-dev.20250906-ecb26fb775",
+    "sharp": "^0.34.3"
+  }
+}
