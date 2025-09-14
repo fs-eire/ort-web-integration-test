@@ -31,4 +31,18 @@ In current directory, do `npx http-server .`, then
   npm ci
   node main.js
   ```
-  
+
+## WebGPU EP Diagnosis (local)
+
+### Base version
+
+- 505b135cfa89445b760a0a5efda84ec78a6e777e
+  [web] fix IO binding for WebGPU EP (#25190)
+
+- http://localhost:8080/ort-llm.html?local=0&max_tokens=300&ort=2&ort_import=./ort-dist_base/
+
+### version 0906
+
+- ecb26fb7754d7c9edf24b1844ea807180a2e3e23
+
+- http://localhost:8080/ort-llm.html?local=0&max_tokens=300&ort=2&ort_import=./node_modules/onnxruntime-web/dist/
