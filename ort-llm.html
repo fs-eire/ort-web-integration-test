@@ -18,16 +18,19 @@
     <script type="module">
         const urlParams = new URLSearchParams(window.location.search);
         const ort_param = urlParams.get("ort");
+        const ort_import_param = urlParams.get("ort_import");
 
         let ort, AutoTokenizer, env;
 
         if (ort_param == "1") {
-            log("importing from local JSEP");
-            ort = await import('./ort-dist/ort.mjs');
+            const url = `${ort_import_param ?? './ort-dist/'}ort.mjs`;
+            log(`importing from local JSEP: ${url}`);
+            ort = await import(url);
             ({ AutoTokenizer, env } = await import("./dist_jsep/transformers.js"));
         } else if (ort_param == "2") {
-            log("importing from local WebGPUEP");
-            ort = await import('./ort-dist/ort.webgpu.mjs');
+            const url = `${ort_import_param ?? './ort-dist/'}ort.webgpu.mjs`;
+            log(`importing from local WebGPUEP: ${url}`);
+            ort = await import(url);
             ({ AutoTokenizer, env } = await import("./dist_asyncify/transformers.js"));
         } else {
             log("importing from CDN");
@@ -64,6 +67,7 @@
                 task: "generation",
                 config: "ort-llm.json",
                 ort: 0,
+                ort_import: undefined,
             }
             let vars = query.split("&");
             for (var i = 0; i < vars.length; i++) {

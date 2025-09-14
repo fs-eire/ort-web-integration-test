@@ -73,7 +73,7 @@ export class LLM {
         this.eos = BigInt64Array.from(this.eos, (i) => BigInt(i));
 
         let model_bytes = await fetchAndCache(model_path + "/onnx/" + model_file);
-        let externaldata = (use_externaldata) ? await fetchAndCache(model_path + "/onnx/" + model_file + '_data') : false;
+        let externaldata = (use_externaldata) ? await fetchAndCache(model_path + "/onnx/" + "model.onnx" + '_data') : false;
         let modelSize = model_bytes.byteLength;
         if (externaldata) {
             modelSize += externaldata.byteLength;
