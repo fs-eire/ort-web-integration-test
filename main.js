@@ -28,6 +28,7 @@ if (IS_WEB) {
   // 0: use ORT from CDN
   // 1: use local "onnxruntime-web"
   // 2: use local "onnxruntime-web/webgpu"
+  // 3: use local "onnxruntime-web/jspi"
   if (ort == "1") {
     log("importing from /dist_jsep/transformers.js");
     const t = await import("./dist_jsep/transformers.js");
@@ -36,6 +37,11 @@ if (IS_WEB) {
   } else if (ort == "2") {
     log("importing from /dist_asyncify/transformers.js");
     const t = await import("./dist_asyncify/transformers.js");
+    pipeline = t.pipeline;
+    TextStreamer = t.TextStreamer;
+  } else if (ort == "3") {
+    log("importing from /dist_jspi/transformers.js");
+    const t = await import("./dist_jspi/transformers.js");
     pipeline = t.pipeline;
     TextStreamer = t.TextStreamer;
   } else {
