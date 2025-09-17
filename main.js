@@ -13,15 +13,15 @@ const log = IS_WEB
       console.log(msg);
     };
 
-let pipeline, TextStreamer, max_new_tokens;
+let pipeline, TextStreamer, max_tokens;
 
 if (IS_WEB) {
   // Get param "ort" from URL
   const urlParams = new URLSearchParams(window.location.search);
   const ort = urlParams.get("ort");
-  max_new_tokens = Number.parseInt(urlParams.get("max_new_tokens"));
-  if (Number.isNaN(max_new_tokens)) {
-    max_new_tokens = 100;
+  max_tokens = Number.parseInt(urlParams.get("max_tokens"));
+  if (Number.isNaN(max_tokens)) {
+    max_tokens = 300;
   }
 
   // param "ort" can be:
@@ -57,7 +57,7 @@ if (IS_WEB) {
   const t = await import("./dist_asyncify/transformers.node.mjs");
   pipeline = t.pipeline;
   TextStreamer = t.TextStreamer;
-  max_new_tokens = 100;
+  max_tokens = 300;
 }
 
 // Create a text generation pipeline
@@ -80,7 +80,7 @@ const messages = [
 let tokenCount = 0;
 const start = performance.now();
 const output = await generator(messages, {
-  max_new_tokens,
+  max_new_tokens: max_tokens,
   do_sample: false,
   streamer: new TextStreamer(generator.tokenizer, {
     skip_prompt: true,
