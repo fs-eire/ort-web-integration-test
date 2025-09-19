@@ -44,6 +44,7 @@
         }
 
         ort.env.wasm.wasmPaths = undefined; // use default path
+        //ort.env.logLevel = 'verbose';
 
         globalThis.ort = ort;
 
@@ -73,6 +74,7 @@
                 config: "ort-llm.json",
                 ort: 0,
                 ort_import: undefined,
+                fix: 0,
             }
             let vars = query.split("&");
             for (var i = 0; i < vars.length; i++) {
@@ -170,6 +172,7 @@
                 trace: config.trace,
                 local: config.local,
                 hasFP16: config.fp32 == 0,
+                fix: config.fix,
             });
 
             document.getElementById('status').innerText = "";
